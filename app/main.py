@@ -1,7 +1,9 @@
+from app.services import FILE_PATH
 from app.utils import create_book, delete_book, find_books, update_book, list_books
+from app.services import FILE_PATH
 
 
-def main():
+def main(filename=FILE_PATH):
     """
     Основная функция для управления библиотекой.
     """
@@ -18,15 +20,15 @@ def main():
         choice = input('Введите номер действия: ').strip()
 
         if choice == '1':
-            create_book()
+            create_book(filename=filename)
         elif choice == '2':
-            delete_book()
+            delete_book(filename=filename)
         elif choice == '3':
-            find_books()
+            find_books(filename=filename)
         elif choice == '4':
-            update_book()
+            update_book(filename=filename)
         elif choice == '5':
-            list_books()
+            list_books(filename=filename)
         elif choice == '6':
             print('Спасибо за использование библиотеки! До свидания!')
             break
