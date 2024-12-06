@@ -1,7 +1,8 @@
-from models import Book, read_file, write_file
+from app.models import Book
+from app.services import read_file, write_file, FILE_PATH
 
 
-def create_book():
+def create_book(filename=FILE_PATH):
     """
     Функция создания новой книги с указанными полями.
     """
@@ -25,18 +26,18 @@ def create_book():
         else:
             print('Год написания книги должен быть целым числом и не пустым.')
     try:
-        book = Book(title_input, author_input, year_input)
+        book = Book(title_input, author_input, year_input, filename=filename)
         print(f'Книга "{book.title}" успешно добавлена.')
     except Exception as e:
         print(f'Ошибка при создании книги: {e}')
 
 
-def delete_book():
+def delete_book(filename=FILE_PATH):
     """
     Функция удаления книги по id.
     """
     try:
-        books = read_file()
+        books = read_file(filename=filename)
         if not books:
             print('Нет данных для удаления.')
             return
@@ -58,17 +59,17 @@ def delete_book():
             print(f'Книга с id {book_id} не найдена.')
             return
 
-        write_file(books)
+        write_file(books, filename=filename)
         print(f'Книга с id {book_id} успешно удалена.')
     except Exception as e:
         print(f'Ошибка при удалении книги: {e}')
 
 
-def find_books():
+def find_books(filename=FILE_PATH):
     """
     Функция поиска книг/и по названию, автору или году.
     """
-    books = read_file()
+    books = read_file(filename=filename)
     if not books:
         print('Нет данных для поиска.')
         return
@@ -111,11 +112,11 @@ def find_books():
         print('Совпадений не найдено.')
 
 
-def update_book():
+def update_book(filename=FILE_PATH):
     """
     Функция для изменения статуса книги по id.
     """
-    books = read_file()
+    books = read_file(filename=filename)
     if not books:
         print('Нет данных для обновления.')
         return
@@ -143,14 +144,14 @@ def update_book():
         print(f'Книга с id {book_id} не найдена.')
         return
 
-    write_file(books)
+    write_file(books, filename=filename)
 
 
-def list_books():
+def list_books(filename=FILE_PATH):
     """
     Функция вывода списка всех книг.
     """
-    books = read_file()
+    books = read_file(filename=filename)
     if not books:
         print('Нет данных для вывода.')
         return

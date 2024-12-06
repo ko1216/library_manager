@@ -1,4 +1,4 @@
-from utils import create_book, delete_book, find_books, update_book, list_books
+from app.utils import create_book, delete_book, find_books, update_book, list_books
 
 
 def main():
@@ -33,7 +33,6 @@ def main():
         else:
             print('Некорректный ввод. Пожалуйста, выберите номер из списка.')
 
-        # Предлагаем пользователю продолжить
         input('\nНажмите Enter, чтобы вернуться в главное меню...')
 
 
